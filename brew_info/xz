@@ -1,0 +1,9 @@
+xz: stable 5.2.2 (bottled)
+General-purpose data compression with high compression ratio
+http://tukaani.org/xz/
+/usr/local/Cellar/xz/5.2.2 (91 files, 2.2M) *
+  Poured from bottle
+From: https://github.com/Homebrew/homebrew/blob/master/Library/Formula/xz.rb
+==> Options
+--universal
+	Build a universal binary

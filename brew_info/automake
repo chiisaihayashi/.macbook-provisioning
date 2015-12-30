@@ -1,0 +1,9 @@
+automake: stable 1.15 (bottled)
+Tool for generating GNU Standards-compliant Makefiles
+https://www.gnu.org/software/automake/
+/usr/local/Cellar/automake/1.15 (130 files, 3.2M) *
+  Poured from bottle
+From: https://github.com/Homebrew/homebrew/blob/master/Library/Formula/automake.rb
+==> Dependencies
+Build: xz
+Required: autoconf

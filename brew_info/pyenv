@@ -1,0 +1,23 @@
+pyenv: stable 20151222, HEAD
+Python version management
+https://github.com/yyuu/pyenv
+/usr/local/Cellar/pyenv/20151222 (455 files, 2.1M) *
+  Built from source
+From: https://github.com/Homebrew/homebrew/blob/master/Library/Formula/pyenv.rb
+==> Dependencies
+Recommended: autoconf, pkg-config, openssl
+==> Options
+--without-autoconf
+	Build without autoconf support
+--without-openssl
+	Build without openssl support
+--without-pkg-config
+	Build without pkg-config support
+--HEAD
+	Install HEAD version
+==> Caveats
+To use Homebrew's directories rather than ~/.pyenv add to your profile:
+  export PYENV_ROOT=/usr/local/var/pyenv
+
+To enable shims and autocompletion add to your profile:
+  if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi

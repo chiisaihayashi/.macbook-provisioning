@@ -1,0 +1,20 @@
+zsh: stable 5.2 (bottled), HEAD
+UNIX shell (command interpreter)
+http://www.zsh.org/
+/usr/local/Cellar/zsh/5.2 (1138 files, 11M) *
+  Built from source with: --without-etcdir
+From: https://github.com/Homebrew/homebrew/blob/master/Library/Formula/zsh.rb
+==> Dependencies
+Required: gdbm, pcre
+==> Options
+--without-etcdir
+	Disable the reading of Zsh rc files in /etc
+--HEAD
+	Install HEAD version
+==> Caveats
+In order to use this build of zsh as your login shell,
+it must be added to /etc/shells.
+Add the following to your zshrc to access the online help:
+  unalias run-help
+  autoload run-help
+  HELPDIR=/usr/local/share/zsh/help

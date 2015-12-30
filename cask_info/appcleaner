@@ -1,0 +1,7 @@
+appcleaner: 3.2.1
+AppCleaner
+https://www.freemacsoft.net/appcleaner/
+/opt/homebrew-cask/Caskroom/appcleaner/3.2.1 (220 files, 4.8M)
+https://github.com/caskroom/homebrew-cask/blob/master/Casks/appcleaner.rb
+==> Contents
+  AppCleaner.app (app)

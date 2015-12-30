@@ -1,0 +1,128 @@
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  sudo: no
+  vars:
+    homebrew_taps:
+      - homebrew/binary
+      - homebrew/dupes
+      - caskroom/cask
+      - sanemat/font
+      - caskroom/versions
+    homebrew_packages:
+      - { name: readline }
+      - { name: openssl }
+      - { name: openssl, state: linked, install_options: force }
+      - { name: python }
+      - { name: ansible }
+      - { name: git }
+      - { name: zsh, install_options: disable-etcdir } #
+      - { name: wget }
+      - { name: curl }
+      - { name: tree }
+      - { name: go }
+      - { name: rbenv }
+      - { name: ruby-build }
+      - { name: vim }
+      - { name: macvim, install_options: 'with-cscope,with-lua,override-system-vim' }
+      - { name: hub}
+      - { name: autoconf}
+      - { name: automake}
+      - { name: docker}
+      - { name: tmux}
+      - { name: pyenv}
+      - { name: pyenv-virtualenv}
+      - { name: xz}
+      - { name: thefuck}
+    homebrew_cask_packages:
+      - { name: iterm2 }
+      - { name: dropbox }
+      - { name: firefox }
+      - { name: google-chrome }
+      - { name: adobe-reader }
+      - { name: skype }
+      - { name: slack }
+      - { name: vagrant }
+      - { name: virtualbox }
+      - { name: evernote }
+      - { name: sublime-text}
+      - { name: pycharm-ce}
+      - { name: the-unarchiver}
+      - { name: skitch}
+      - { name: dash}
+      - { name: alfred}
+      - { name: appcleaner}
+      - { name: intellij-idea-ce}
+      - { name: sourcetree}
+      - { name: java7}
+      - { name: karabiner}
+      - { name: limechat}
+      - { name: flux}
+      - { name: atom}
+      - { name: slate}
+      - { name: macvim, install_options: 'with-cscope,with-lua,override-system-vim' }
+      - { name: vlc}
+      - { name: wireshark}
+      - { name: macdown}
+
+  tasks:
+    - name: add tap repository for homebrew
+      homebrew_tap: tap={{ item }} state=present
+      with_items: homebrew_taps
+
+    - name: update homebrew
+      homebrew: update_homebrew=yes
+
+    # brew
+    - name: install brew packages
+      homebrew: >
+        name={{ item.name }}
+        state={{ item.state | default('latest') }}
+        install_options={{
+          item.install_options | default() | join(',')
+          if item.install_options is not string
+          else item.install_options
+        }}
+      with_items: homebrew_packages
+      register: brew_result
+    - name: make dir for info of brew packages
+      file: path=brew_info state=directory
+    - name: save infor brew packages
+      shell: brew info {{ item }} > brew_info/{{ item }}
+      with_items: brew_result.results | selectattr('changed') | map(attribute='item') | map(attribute='name') | list
+
+    # cask
+    - name: install homebrew-cask
+      homebrew: name=brew-cask state=latest
+    - name: install cask packages
+      homebrew_cask: name={{ item.name }} state={{ item.state|default('installed') }}
+      with_items: homebrew_cask_packages
+      register: cask_result
+    - name: make dir for info of cask packages
+      file: path=cask_info state=directory
+    - name: save info of cask packages
+      shell: brew cask info {{ item }} > cask_info/{{ item }}
+      with_items: cask_result.results | selectattr('changed') | map(attribute='item') | map(attribute='name') | list
+
+    # oh-my-zsh
+    - name: install oh-my-zsh
+      shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+      args:
+        creates: ~/.oh-my-zsh/
+
+    # Ricty
+    - name: install xquartz (for Ricty)
+      homebrew_cask: name=xquartz
+    - name: install fontforge (for Ricty)
+      homebrew: name=fontforge
+    - name: install Ricty
+      homebrew: name=ricty
+    - name: copy font file
+      shell: cp -f $(brew --cellar ricty)/*/share/fonts/Ricty*.ttf ~/Library/Fonts/
+      args:
+        creates: ~/Library/Fonts/Ricty-Bold.ttf
+      notify: run fc-cache
+
+  handlers:
+    - name: run fc-cache
+      shell: fc-cache -vf

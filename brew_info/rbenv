@@ -1,0 +1,20 @@
+rbenv: stable 1.0.0 (bottled), HEAD
+Ruby version manager
+https://github.com/rbenv/rbenv#readme
+/usr/local/Cellar/rbenv/1.0.0 (35 files, 168K) *
+  Poured from bottle
+From: https://github.com/Homebrew/homebrew/blob/master/Library/Formula/rbenv.rb
+==> Dependencies
+Recommended: ruby-build
+==> Options
+--without-ruby-build
+	Build without ruby-build support
+--HEAD
+	Install HEAD version
+==> Caveats
+Rbenv stores data under ~/.rbenv by default. If you absolutely need to
+store everything under Homebrew's prefix, include this in your profile:
+  export RBENV_ROOT=/usr/local/var/rbenv
+
+To enable shims and autocompletion, run this and follow the instructions:
+  rbenv init

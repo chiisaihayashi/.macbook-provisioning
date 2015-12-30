@@ -1,0 +1,19 @@
+hub: stable 2.2.2 (bottled), HEAD
+Add GitHub support to git on the command-line
+https://hub.github.com/
+/usr/local/Cellar/hub/2.2.2 (9 files, 10M) *
+  Poured from bottle
+From: https://github.com/Homebrew/homebrew/blob/master/Library/Formula/hub.rb
+==> Dependencies
+Build: go
+==> Options
+--without-completions
+	Disable bash/zsh completions
+--HEAD
+	Install HEAD version
+==> Caveats
+Bash completion has been installed to:
+  /usr/local/etc/bash_completion.d
+
+zsh completion has been installed to:
+  /usr/local/share/zsh/site-functions
