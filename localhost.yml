@@ -34,6 +34,8 @@
       - { name: pyenv-virtualenv}
       - { name: xz}
       - { name: thefuck}
+      - { name: maven}
+      - { name: kafka}
     homebrew_cask_packages:
       - { name: iterm2 }
       - { name: dropbox }
