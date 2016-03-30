@@ -66,6 +66,8 @@
       - { name: vlc}
       - { name: wireshark}
       - { name: macdown}
+      - { name: bitbar}
+      - { name: bartender}
 
   tasks:
     - name: add tap repository for homebrew
