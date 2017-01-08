@@ -16,13 +16,11 @@
       - { name: python }
       - { name: ansible }
       - { name: git }
-      - { name: zsh, install_options: disable-etcdir } #
+      - { name: zsh, install_options: disable-etcdir }
       - { name: wget }
       - { name: curl }
       - { name: tree }
       - { name: go }
-      - { name: rbenv }
-      - { name: ruby-build }
       - { name: vim }
       - { name: macvim, install_options: 'with-cscope,with-lua,override-system-vim' }
       - { name: hub}
@@ -47,7 +45,6 @@
       - { name: vagrant }
       - { name: virtualbox }
       - { name: evernote }
-      - { name: sublime-text}
       - { name: pycharm-ce}
       - { name: the-unarchiver}
       - { name: skitch}
@@ -59,7 +56,6 @@
       - { name: java7}
       - { name: karabiner}
       - { name: limechat}
-      - { name: flux}
       - { name: atom}
       - { name: slate}
       - { name: macvim, install_options: 'with-cscope,with-lua,override-system-vim' }
