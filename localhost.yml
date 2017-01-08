@@ -1,7 +1,6 @@
 - hosts: localhost
   connection: local
   gather_facts: no
-  sudo: no
   vars:
     homebrew_taps:
       - homebrew/binary
@@ -33,7 +32,6 @@
       - { name: xz}
       - { name: thefuck}
       - { name: maven}
-      - { name: kafka}
     homebrew_cask_packages:
       - { name: iterm2 }
       - { name: dropbox }
@@ -58,7 +56,7 @@
       - { name: limechat}
       - { name: atom}
       - { name: slate}
-      - { name: macvim, install_options: 'with-cscope,with-lua,override-system-vim' }
+      - { name: macvim, install_options: 'with-cscope,with-lua,with-override-system-vim' }
       - { name: vlc}
       - { name: wireshark}
       - { name: macdown}
@@ -68,14 +66,14 @@
   tasks:
     - name: add tap repository for homebrew
       homebrew_tap: tap={{ item }} state=present
-      with_items: homebrew_taps
+      with_items: "{{ homebrew_taps }}"
 
     - name: update homebrew
       homebrew: update_homebrew=yes
 
     # brew
     - name: install brew packages
-      homebrew: >
+      homebrew:
         name={{ item.name }}
         state={{ item.state | default('latest') }}
         install_options={{
@@ -83,7 +81,7 @@
           if item.install_options is not string
           else item.install_options
         }}
-      with_items: homebrew_packages
+      with_items: "{{ homebrew_packages }}"
       register: brew_result
     - name: make dir for info of brew packages
       file: path=brew_info state=directory
@@ -96,7 +94,7 @@
       homebrew: name=brew-cask state=latest
     - name: install cask packages
       homebrew_cask: name={{ item.name }} state={{ item.state|default('installed') }}
-      with_items: homebrew_cask_packages
+      with_items: "{{ homebrew_cask_packages }}"
       register: cask_result
     - name: make dir for info of cask packages
       file: path=cask_info state=directory
