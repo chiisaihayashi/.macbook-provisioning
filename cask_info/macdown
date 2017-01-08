@@ -1,8 +1,0 @@
-macdown: 0.5.3
-MacDown
-http://macdown.uranusjr.com/
-/opt/homebrew-cask/Caskroom/macdown/0.5.3 (517 files, 8.5M)
-https://github.com/caskroom/homebrew-cask/blob/master/Casks/macdown.rb
-==> Contents
-  MacDown.app (app)
-  MacDown.app/Contents/SharedSupport/bin/macdown (binary)

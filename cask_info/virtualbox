@@ -1,7 +1,0 @@
-virtualbox: 5.0.12-104815
-Oracle VirtualBox
-https://www.virtualbox.org
-/opt/homebrew-cask/Caskroom/virtualbox/5.0.12-104815 (4 files, 87M)
-https://github.com/caskroom/homebrew-cask/blob/master/Casks/virtualbox.rb
-==> Contents
-  VirtualBox.pkg (pkg)
