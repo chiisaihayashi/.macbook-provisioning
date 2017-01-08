@@ -1,7 +1,7 @@
-go: stable 1.5.2 (bottled), devel 1.6beta1, HEAD
+go: stable 1.7.4 (bottled), HEAD
 Go programming environment
 https://golang.org
-/usr/local/Cellar/go/1.5.2 (5336 files, 273M) *
+/usr/local/Cellar/go/1.7.4 (5336 files, 273M) *
   Poured from bottle
 From: https://github.com/Homebrew/homebrew/blob/master/Library/Formula/go.rb
 ==> Options
@@ -11,8 +11,6 @@ From: https://github.com/Homebrew/homebrew/blob/master/Library/Formula/go.rb
 	godoc will not be installed for you
 --without-vet
 	vet will not be installed for you
---devel
-	Install development version 1.6beta1
 --HEAD
 	Install HEAD version
 ==> Caveats
