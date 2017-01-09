@@ -19,13 +19,6 @@ $ brew install caskroom/cask/brew-cask
 $ git clone https://github.com/chiisaihayashi/.macbook-provisioning
 ```
 
-##setting brew option
-```
-$ cd .macbook-provisioning/
-$ echo 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"' >> ~/.bash_profile
-$ source ~/.bash_profile
-```
-
 ##provisioning
 ```
 $ cd .macbook-provisioning/

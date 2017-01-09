@@ -21,7 +21,7 @@
       - { name: tree }
       - { name: go }
       - { name: vim }
-      - { name: macvim, install_options: 'with-cscope,with-lua,override-system-vim' }
+      - { name: macvim, install_options: with-cscope,with-lua,with-override-system-vim }
       - { name: hub}
       - { name: autoconf}
       - { name: automake}
@@ -56,7 +56,7 @@
       - { name: limechat}
       - { name: atom}
       - { name: slate}
-      - { name: macvim, install_options: 'with-cscope,with-lua,with-override-system-vim' }
+      - { name: macvim, install_options: 'with-lua,with-override-system-vim' }
       - { name: vlc}
       - { name: wireshark}
       - { name: macdown}
@@ -87,20 +87,20 @@
       file: path=brew_info state=directory
     - name: save infor brew packages
       shell: brew info {{ item }} > brew_info/{{ item }}
-      with_items: brew_result.results | selectattr('changed') | map(attribute='item') | map(attribute='name') | list
+      with_items: "{{ brew_result.results | selectattr('changed') | map(attribute='item') | map(attribute='name') | list }}"
 
     # cask
-    - name: install homebrew-cask
-      homebrew: name=brew-cask state=latest
+   # - name: install homebrew-cask
+   #   homebrew: name=brew-cask state=latest
     - name: install cask packages
-      homebrew_cask: name={{ item.name }} state={{ item.state|default('installed') }}
+      homebrew_cask: name={{ item.name }} state={{ item.state|default('installed') }} install_options='appdir=/Applications'
       with_items: "{{ homebrew_cask_packages }}"
       register: cask_result
     - name: make dir for info of cask packages
       file: path=cask_info state=directory
     - name: save info of cask packages
       shell: brew cask info {{ item }} > cask_info/{{ item }}
-      with_items: cask_result.results | selectattr('changed') | map(attribute='item') | map(attribute='name') | list
+      with_items: "{{ cask_result.results | selectattr('changed') | map(attribute='item') | map(attribute='name') | list }}"
 
     # oh-my-zsh
     - name: install oh-my-zsh
