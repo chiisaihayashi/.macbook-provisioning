@@ -19,7 +19,6 @@
       - { name: wget }
       - { name: curl }
       - { name: tree }
-      - { name: go }
       - { name: vim }
       - { name: macvim, install_options: with-cscope,with-lua,with-override-system-vim }
       - { name: hub}
